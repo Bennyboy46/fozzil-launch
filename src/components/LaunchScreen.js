@@ -10,14 +10,15 @@ const LaunchScreen = () => {
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      if (event.key === "Enter" && !showCountdown && !isLaunched) {
+      if (event.code === "Space" && !showCountdown && !isLaunched) {
+        event.preventDefault(); // Prevent page scroll on spacebar
         startCountdown();
       }
     };
 
-    document.addEventListener("keypress", handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress);
     return () => {
-      document.removeEventListener("keypress", handleKeyPress);
+      document.removeEventListener("keydown", handleKeyPress);
     };
   }, [showCountdown, isLaunched]);
 
