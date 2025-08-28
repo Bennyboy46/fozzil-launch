@@ -1,0 +1,308 @@
+.bg {
+  background: url(https://i.ibb.co/87GbbFP/2799006.jpg) no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -3;
+}
+
+.bg:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #000;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+@keyframes sf-fly-by-1 {
+  from {
+    transform: translateZ(-600px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateZ(0);
+    opacity: 0.5;
+  }
+}
+
+@keyframes sf-fly-by-2 {
+  from {
+    transform: translateZ(-1200px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateZ(-600px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes sf-fly-by-3 {
+  from {
+    transform: translateZ(-1800px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateZ(-1200px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes rocketLaunch {
+  0% {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-1000px) translateX(-50%);
+    opacity: 0;
+  }
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+    filter: blur(20px) brightness(0);
+  }
+  25% {
+    opacity: 0.3;
+    transform: scale(1.5);
+    filter: blur(15px) brightness(0.3);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+    filter: blur(10px) brightness(0.6);
+  }
+  75% {
+    opacity: 0.8;
+    transform: scale(1.1);
+    filter: blur(5px) brightness(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0) brightness(1);
+  }
+}
+
+.star-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 600px;
+  -webkit-perspective: 600px;
+  z-index: -1;
+}
+
+.star-field .layer {
+  box-shadow: -411px -476px #cccccc, 777px -407px #d4d4d4, -387px -477px #fcfcfc,
+    -91px -235px #d4d4d4, 491px -460px #f7f7f7, 892px -128px #f7f7f7,
+    758px -277px #ededed, 596px 378px #cccccc, 647px 423px whitesmoke,
+    183px 389px #c7c7c7, 524px -237px #f0f0f0, 679px -535px #e3e3e3,
+    158px 399px #ededed, 157px 249px #ededed, 81px -450px #ebebeb,
+    719px -360px #c2c2c2, -499px 473px #e8e8e8, -158px -349px #d4d4d4,
+    870px -134px #cfcfcf, 446px 404px #c2c2c2, 440px 490px #d4d4d4,
+    414px 507px #e6e6e6, -12px 246px #fcfcfc, -384px 369px #e3e3e3,
+    641px -413px #fcfcfc, 822px 516px #dbdbdb, 449px 132px #c2c2c2,
+    727px 146px #f7f7f7, -315px -488px #e6e6e6, 952px -70px #e3e3e3,
+    -869px -29px #dbdbdb, 502px 80px #dedede, 764px 342px #e0e0e0,
+    -150px -380px #dbdbdb, 654px -426px #e3e3e3, -325px -263px #c2c2c2,
+    755px -447px #c7c7c7, 729px -177px #c2c2c2, -682px -391px #e6e6e6,
+    554px -176px #ededed;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 4px;
+  width: 4px;
+  border-radius: 2px;
+}
+
+.star-field .layer:nth-child(1) {
+  animation: sf-fly-by-1 5s linear infinite;
+}
+
+.star-field .layer:nth-child(2) {
+  animation: sf-fly-by-2 5s linear infinite;
+}
+
+.star-field .layer:nth-child(3) {
+  animation: sf-fly-by-3 5s linear infinite;
+}
+
+.rocket-container {
+  position: fixed;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13rem;
+  color: #394890;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rocket-fire {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 60px;
+  opacity: 0;
+}
+
+.rocket-fire::before,
+.rocket-fire::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 20% 20%;
+}
+
+.rocket-fire::before {
+  background: linear-gradient(to bottom, #ff3d00, #ff9100);
+  animation: fireCore 0.2s ease-out infinite alternate;
+}
+
+.rocket-fire::after {
+  background: linear-gradient(to bottom, #ff9100, transparent);
+  animation: fireGlow 0.2s ease-out infinite alternate;
+}
+
+@keyframes fireCore {
+  0% {
+    height: 60px;
+    opacity: 0.8;
+  }
+  100% {
+    height: 80px;
+    opacity: 1;
+  }
+}
+
+@keyframes fireGlow {
+  0% {
+    height: 80px;
+    opacity: 0.5;
+  }
+  100% {
+    height: 100px;
+    opacity: 0.8;
+  }
+}
+
+.countdown {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15rem;
+  color: #ff4d4d;
+  text-align: center;
+  font-family: "Arial Black", sans-serif;
+  text-shadow: 0 0 20px rgba(255, 77, 77, 0.8), 0 0 40px rgba(255, 77, 77, 0.6),
+    0 0 60px rgba(255, 77, 77, 0.4);
+  opacity: 0.9;
+  transition: transform 0.5s ease, color 0.5s ease;
+  animation: countdownPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes countdownPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+    color: #ff4d4d;
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.95;
+    color: #ff2200;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+    color: #ff0000;
+    text-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.6),
+      0 0 90px rgba(255, 0, 0, 0.4);
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.95;
+    color: #ff2200;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+    color: #ff4d4d;
+  }
+}
+
+.rocket-launch {
+  animation: rocketLaunch 4s ease-in forwards;
+}
+
+.rocket-launch .rocket-fire {
+  opacity: 1;
+}
+
+.logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  perspective: 1000px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 2vh;
+  filter: drop-shadow(0 0 30px rgba(0, 195, 255, 0.6));
+  transform-style: preserve-3d;
+}
+
+.logo.reveal {
+  animation: logoReveal 3s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: 2s;
+}
+
+.logo.reveal img {
+  animation: logoGlow 4s ease-in-out infinite alternate;
+  animation-delay: 5s;
+}
+
+@keyframes logoGlow {
+  0% {
+    filter: drop-shadow(0 0 30px rgba(0, 195, 255, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 50px rgba(0, 255, 242, 0.8)) brightness(1.2);
+  }
+  100% {
+    filter: drop-shadow(0 0 70px rgba(64, 169, 255, 0.9)) brightness(1.4);
+  }
+}
